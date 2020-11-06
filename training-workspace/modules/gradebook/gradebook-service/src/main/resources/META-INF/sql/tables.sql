@@ -7,6 +7,6 @@ create table Gradebook_Assignment (
 	createDate DATE null,
 	modifiedDate DATE null,
 	title STRING null,
-	description VARCHAR(75) null,
+	description STRING null,
 	dueDate DATE null
 );

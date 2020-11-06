@@ -52,6 +52,17 @@ public class AssignmentLocalServiceUtil {
 		return getService().addAssignment(assignment);
 	}
 
+	public static com.liferay.training.gradebook.model.Assignment addAssignment(
+			long groupId, java.util.Map<java.util.Locale, String> titleMap,
+			java.util.Map<java.util.Locale, String> descriptionMap,
+			java.util.Date dueDate,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().addAssignment(
+			groupId, titleMap, descriptionMap, dueDate, serviceContext);
+	}
+
 	/**
 	 * Creates a new assignment with the primary key. Does not add the assignment to the database.
 	 *
@@ -231,6 +242,44 @@ public class AssignmentLocalServiceUtil {
 		return getService().getAssignments(start, end);
 	}
 
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(long groupId) {
+
+		return getService().getAssignmentsByGroupId(groupId);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(long groupId, int start, int end) {
+
+		return getService().getAssignmentsByGroupId(groupId, start, end);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(
+				long groupId, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator) {
+
+		return getService().getAssignmentsByGroupId(
+			groupId, start, end, orderByComparator);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByKeywords(
+				long groupId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator) {
+
+		return getService().getAssignmentsByKeywords(
+			groupId, keywords, start, end, orderByComparator);
+	}
+
 	/**
 	 * Returns the number of assignments.
 	 *
@@ -240,11 +289,23 @@ public class AssignmentLocalServiceUtil {
 		return getService().getAssignmentsCount();
 	}
 
+	public static long getAssignmentsCountByKeywords(
+		long groupId, String keywords) {
+
+		return getService().getAssignmentsCountByKeywords(groupId, keywords);
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {
 
 		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
+		getKeywordSearchDynamicQuery(long groupId, String keywords) {
+
+		return getService().getKeywordSearchDynamicQuery(groupId, keywords);
 	}
 
 	/**
@@ -274,6 +335,19 @@ public class AssignmentLocalServiceUtil {
 			com.liferay.training.gradebook.model.Assignment assignment) {
 
 		return getService().updateAssignment(assignment);
+	}
+
+	public static com.liferay.training.gradebook.model.Assignment
+			updateAssignment(
+				long assignmentId,
+				java.util.Map<java.util.Locale, String> titleMap,
+				java.util.Map<java.util.Locale, String> descriptionMap,
+				java.util.Date dueDate,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateAssignment(
+			assignmentId, titleMap, descriptionMap, dueDate, serviceContext);
 	}
 
 	public static AssignmentLocalService getService() {
