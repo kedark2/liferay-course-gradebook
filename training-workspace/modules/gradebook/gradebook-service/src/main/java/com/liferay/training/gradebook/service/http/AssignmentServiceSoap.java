@@ -14,11 +14,21 @@
 
 package com.liferay.training.gradebook.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.training.gradebook.service.AssignmentServiceUtil;
+
+import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the SOAP utility for the
- * <code>com.liferay.training.gradebook.service.AssignmentServiceUtil</code> service
+ * <code>AssignmentServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -57,4 +67,167 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class AssignmentServiceSoap {
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap
+			addAssignment(
+				long groupId, String[] titleMapLanguageIds,
+				String[] titleMapValues, String[] descriptionMapLanguageIds,
+				String[] descriptionMapValues, java.util.Date dueDate,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
+				titleMapLanguageIds, titleMapValues);
+			Map<Locale, String> descriptionMap =
+				LocalizationUtil.getLocalizationMap(
+					descriptionMapLanguageIds, descriptionMapValues);
+
+			com.liferay.training.gradebook.model.Assignment returnValue =
+				AssignmentServiceUtil.addAssignment(
+					groupId, titleMap, descriptionMap, dueDate, serviceContext);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap
+			deleteAssignment(long assignmentId)
+		throws RemoteException {
+
+		try {
+			com.liferay.training.gradebook.model.Assignment returnValue =
+				AssignmentServiceUtil.deleteAssignment(assignmentId);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap
+			getAssignment(long assignmentId)
+		throws RemoteException {
+
+		try {
+			com.liferay.training.gradebook.model.Assignment returnValue =
+				AssignmentServiceUtil.getAssignment(assignmentId);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap[]
+			getAssignmentByGroupId(
+				long groupId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.training.gradebook.model.Assignment>
+				returnValue = AssignmentServiceUtil.getAssignmentByGroupId(
+					groupId, keywords, start, end, orderByComparator);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap[]
+			getAssignmentsByKeywords(
+				long groupId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.training.gradebook.model.Assignment>
+				returnValue = AssignmentServiceUtil.getAssignmentsByKeywords(
+					groupId, keywords, start, end, orderByComparator);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static long getAssignmentsCountByKeywords(
+			long groupId, String keywords)
+		throws RemoteException {
+
+		try {
+			long returnValue =
+				AssignmentServiceUtil.getAssignmentsCountByKeywords(
+					groupId, keywords);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.training.gradebook.model.AssignmentSoap
+			updateAssignment(
+				long assignmentId, String[] titleMapLanguageIds,
+				String[] titleMapValues, String[] descriptionMapLanguageIds,
+				String[] descriptionMapValues, java.util.Date dueDate,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+
+		try {
+			Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
+				titleMapLanguageIds, titleMapValues);
+			Map<Locale, String> descriptionMap =
+				LocalizationUtil.getLocalizationMap(
+					descriptionMapLanguageIds, descriptionMapValues);
+
+			com.liferay.training.gradebook.model.Assignment returnValue =
+				AssignmentServiceUtil.updateAssignment(
+					assignmentId, titleMap, descriptionMap, dueDate,
+					serviceContext);
+
+			return com.liferay.training.gradebook.model.AssignmentSoap.
+				toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		AssignmentServiceSoap.class);
+
 }

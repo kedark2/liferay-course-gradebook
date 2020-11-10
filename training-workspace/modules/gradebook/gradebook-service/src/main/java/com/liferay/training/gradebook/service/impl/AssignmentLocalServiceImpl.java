@@ -64,7 +64,7 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		Date dueDate, ServiceContext serviceContext)
 		throws PortalException{
 	
-		// Get froup and user.
+		// Get group and user.
 		
 		Group group = groupLocalService.getGroup(groupId);
 		

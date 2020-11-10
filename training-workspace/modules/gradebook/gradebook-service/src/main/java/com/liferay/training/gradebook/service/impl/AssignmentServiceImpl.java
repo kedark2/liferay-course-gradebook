@@ -15,7 +15,16 @@
 package com.liferay.training.gradebook.service.impl;
 
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.training.gradebook.model.Assignment;
 import com.liferay.training.gradebook.service.base.AssignmentServiceBaseImpl;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -46,4 +55,45 @@ public class AssignmentServiceImpl extends AssignmentServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.training.gradebook.service.AssignmentServiceUtil</code> to access the assignment remote service.
 	 */
+	public Assignment addAssignment(long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			Date dueDate, ServiceContext serviceContext)
+	throws PortalException {
+		return assignmentLocalService.addAssignment(groupId, titleMap, descriptionMap, dueDate, serviceContext);
+	}
+	
+	public Assignment deleteAssignment(long assignmentId)
+	throws PortalException {
+		Assignment assignment = 
+				assignmentLocalService.getAssignment(assignmentId);
+		return assignmentLocalService.deleteAssignment(assignment);
+	}
+	
+	public Assignment getAssignment(long assignmentId)
+	throws PortalException {
+		Assignment assignment = assignmentLocalService.getAssignment(assignmentId);
+		
+		return assignment;
+	}
+	
+	public List<Assignment> getAssignmentByGroupId(
+		long groupId, String keywords, int start, int end, OrderByComparator<Assignment> orderByComparator){
+		
+		return assignmentLocalService.getAssignmentsByKeywords(groupId, keywords, start, end, orderByComparator);
+	}
+	
+	public List<Assignment> getAssignmentsByKeywords(long groupId, String keywords, int start, int end,
+			OrderByComparator<Assignment> orderByComparator){
+		
+		return assignmentLocalService.getAssignmentsByKeywords(groupId, keywords, start, end, orderByComparator);
+	}
+	
+	public long getAssignmentsCountByKeywords(long groupId, String keywords) {
+		return assignmentLocalService.getAssignmentsCountByKeywords(groupId, keywords);
+	}
+	
+	public Assignment updateAssignment(long assignmentId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			Date dueDate, ServiceContext serviceContext)
+			throws PortalException {
+		return assignmentLocalService.updateAssignment(assignmentId, titleMap, descriptionMap, dueDate, serviceContext);
+	}
 }
