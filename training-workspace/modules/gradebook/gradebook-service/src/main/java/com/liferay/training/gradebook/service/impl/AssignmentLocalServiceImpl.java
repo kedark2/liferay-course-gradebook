@@ -37,13 +37,9 @@ import org.osgi.service.component.annotations.Component;
 /**
  * The implementation of the assignment local service.
  *
- * <p>
  * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.training.gradebook.service.AssignmentLocalService</code> interface.
  *
- * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Kedar
  * @see AssignmentLocalServiceBaseImpl
  */
@@ -52,13 +48,11 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
-	
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.training.gradebook.service.AssignmentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.training.gradebook.service.AssignmentLocalServiceUtil</code>.
 	 */
-
 	public Assignment addAssignment(
 		long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 		Date dueDate, ServiceContext serviceContext)
@@ -74,7 +68,8 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		
 		// Generate primary key for the assignment.
 		
-		long assignmentId = counterLocalService.increment(Assignment.class.getName());
+		long assignmentId = 
+				counterLocalService.increment(Assignment.class.getName());
 		
 		// Create assignment. This doesn't yet persist the entity.
 		
@@ -95,7 +90,6 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		// Persist assignment to database.
 		
 		return super.addAssignment(assignment);
-	
 	}
 	
 	public Assignment updateAssignment(
@@ -104,6 +98,7 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		throws PortalException{
 	
 		// Get the Assignment by id.
+		
 		Assignment assignment = getAssignment(assignmentId);
 	
 		// Set updated fields and modification date.
@@ -119,34 +114,53 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 	}
 	
 	public List<Assignment> getAssignmentsByGroupId(long groupId){
+		
 		return assignmentPersistence.findByGroupId(groupId);
 	}
 	
-	public List<Assignment> getAssignmentsByGroupId(long groupId, int start, int end){
+	public List<Assignment> getAssignmentsByGroupId(
+			long groupId, int start, int end){
+		
 		return assignmentPersistence.findByGroupId(groupId, start, end);
 	}
 	
-	public List<Assignment> getAssignmentsByGroupId(long groupId, int start, int end, 
-			OrderByComparator<Assignment> orderByComparator){
-		return assignmentPersistence.findByGroupId(groupId, start, end, orderByComparator);
-	}
-	public List<Assignment> getAssignmentsByKeywords(long groupId, String keywords, int start, int end,
+	public List<Assignment> getAssignmentsByGroupId(
+			long groupId, int start, int end, 
 			OrderByComparator<Assignment> orderByComparator){
 		
-		return assignmentLocalService.dynamicQuery(getKeywordSearchDynamicQuery(groupId,keywords), start, end, orderByComparator);
+		return assignmentPersistence.findByGroupId(
+				groupId, start, end, orderByComparator);
+	}
+	
+	public List<Assignment> getAssignmentsByKeywords(
+			long groupId, String keywords, int start, int end,
+			OrderByComparator<Assignment> orderByComparator){
+		
+		return assignmentLocalService.dynamicQuery(
+				getKeywordSearchDynamicQuery(groupId,keywords), start, end, 
+				orderByComparator);
 	}
 	
 	public long getAssignmentsCountByKeywords(long groupId, String keywords) {
-		return assignmentLocalService.dynamicQueryCount(getKeywordSearchDynamicQuery(groupId, keywords));
+		return assignmentLocalService.dynamicQueryCount(
+				getKeywordSearchDynamicQuery(groupId, keywords));
 	}
-	public DynamicQuery getKeywordSearchDynamicQuery(long groupId, String keywords) {
-		DynamicQuery dynamicQuery = dynamicQuery().add(RestrictionsFactoryUtil.eq("groupId", groupId));
+	
+	public DynamicQuery getKeywordSearchDynamicQuery(
+		long groupId, String keywords) {
+		
+		DynamicQuery dynamicQuery = dynamicQuery().add(
+				RestrictionsFactoryUtil.eq("groupId", groupId));
 		
 		if (Validator.isNotNull(keywords)) {
-			Disjunction disjunctionQuery = RestrictionsFactoryUtil.disjunction();
+			Disjunction disjunctionQuery = 
+					RestrictionsFactoryUtil.disjunction();
 			
-			disjunctionQuery.add(RestrictionsFactoryUtil.ilike("title","%" +keywords + "%"));
-			disjunctionQuery.add(RestrictionsFactoryUtil.like("description", "%" + keywords + "%"));
+			disjunctionQuery.add(
+					RestrictionsFactoryUtil.ilike("title","%" +keywords + "%"));
+			disjunctionQuery.add(
+					RestrictionsFactoryUtil.like(
+							"description", "%" + keywords + "%"));
 			dynamicQuery.add(disjunctionQuery);
 		}
 		return dynamicQuery;
