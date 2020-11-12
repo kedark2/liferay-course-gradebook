@@ -23,7 +23,7 @@
 
 	<h1><liferay-ui:message key="${editTitle }" /></h1>
 	
-	<aui:model-context bean="${assignment }" model="{assignmentClass}" />
+	<aui:model-context bean="${assignment}" model="${assignmentClass}" />
 	
 	<aui:form action="${assignmentActionURL }" name="fm">
 		
