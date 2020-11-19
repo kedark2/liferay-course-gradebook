@@ -28,7 +28,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * This class is a wrapper for {@link Assignment}.
  * </p>
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see Assignment
  * @generated
  */

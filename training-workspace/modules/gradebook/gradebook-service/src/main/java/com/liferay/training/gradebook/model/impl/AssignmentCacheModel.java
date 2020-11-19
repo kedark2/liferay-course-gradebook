@@ -31,7 +31,7 @@ import org.osgi.annotation.versioning.ProviderType;
 /**
  * The cache model class for representing Assignment in entity cache.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType

@@ -25,7 +25,7 @@ import org.osgi.annotation.versioning.ProviderType;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.training.gradebook.service.http.AssignmentServiceSoap}.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @generated
  */
 @ProviderType

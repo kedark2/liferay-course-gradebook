@@ -21,7 +21,7 @@ import org.osgi.annotation.versioning.ProviderType;
 /**
  * Provides a wrapper for {@link AssignmentLocalService}.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentLocalService
  * @generated
  */
@@ -309,14 +309,6 @@ public class AssignmentLocalServiceWrapper
 		getIndexableActionableDynamicQuery() {
 
 		return _assignmentLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery
-		getKeywordSearchDynamicQuery(long groupId, String keywords) {
-
-		return _assignmentLocalService.getKeywordSearchDynamicQuery(
-			groupId, keywords);
 	}
 
 	/**

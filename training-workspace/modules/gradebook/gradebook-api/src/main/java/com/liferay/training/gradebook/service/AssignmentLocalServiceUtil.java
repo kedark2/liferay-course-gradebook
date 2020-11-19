@@ -27,7 +27,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can only be
  * accessed from within the same VM.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentLocalService
  * @generated
  */
@@ -300,12 +300,6 @@ public class AssignmentLocalServiceUtil {
 			getIndexableActionableDynamicQuery() {
 
 		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		getKeywordSearchDynamicQuery(long groupId, String keywords) {
-
-		return getService().getKeywordSearchDynamicQuery(groupId, keywords);
 	}
 
 	/**

@@ -27,7 +27,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentService
  * @generated
  */
@@ -66,14 +66,9 @@ public class AssignmentServiceUtil {
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(
-				long groupId, String keywords, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.training.gradebook.model.Assignment>
-						orderByComparator) {
+			getAssignmentsByGroupId(long groupId) {
 
-		return getService().getAssignmentByGroupId(
-			groupId, keywords, start, end, orderByComparator);
+		return getService().getAssignmentsByGroupId(groupId);
 	}
 
 	public static java.util.List

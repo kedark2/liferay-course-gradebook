@@ -257,7 +257,7 @@ public class AssignmentsManagementToolbarDisplayContext
 
         return sortingURL;
     }
-
+    
     private final PortalPreferences _portalPreferences;    
     private final ThemeDisplay _themeDisplay;
 }

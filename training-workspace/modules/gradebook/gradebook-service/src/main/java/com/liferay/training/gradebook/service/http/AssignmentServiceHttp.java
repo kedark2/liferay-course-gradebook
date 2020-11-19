@@ -47,7 +47,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * The HTTP utility is only generated for remote services.
  * </p>
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentServiceSoap
  * @generated
  */
@@ -175,20 +175,14 @@ public class AssignmentServiceHttp {
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(
-				HttpPrincipal httpPrincipal, long groupId, String keywords,
-				int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.training.gradebook.model.Assignment>
-						orderByComparator) {
+			getAssignmentsByGroupId(HttpPrincipal httpPrincipal, long groupId) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				AssignmentServiceUtil.class, "getAssignmentByGroupId",
-				_getAssignmentByGroupIdParameterTypes3);
+				AssignmentServiceUtil.class, "getAssignmentsByGroupId",
+				_getAssignmentsByGroupIdParameterTypes3);
 
-			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, keywords, start, end, orderByComparator);
+			MethodHandler methodHandler = new MethodHandler(methodKey, groupId);
 
 			Object returnObj = null;
 
@@ -334,11 +328,8 @@ public class AssignmentServiceHttp {
 		new Class[] {long.class};
 	private static final Class<?>[] _getAssignmentParameterTypes2 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getAssignmentByGroupIdParameterTypes3 =
-		new Class[] {
-			long.class, String.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class
-		};
+	private static final Class<?>[] _getAssignmentsByGroupIdParameterTypes3 =
+		new Class[] {long.class};
 	private static final Class<?>[] _getAssignmentsByKeywordsParameterTypes4 =
 		new Class[] {
 			long.class, String.class, int.class, int.class,

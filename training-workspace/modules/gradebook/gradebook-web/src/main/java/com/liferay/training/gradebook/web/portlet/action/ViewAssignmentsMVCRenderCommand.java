@@ -1,4 +1,4 @@
-package com.liferay.training.gradebook.web.portlet.action;
+ package com.liferay.training.gradebook.web.portlet.action;
 
  import com.liferay.portal.kernel.dao.search.SearchContainer;
  import com.liferay.portal.kernel.portlet.LiferayPortletRequest;

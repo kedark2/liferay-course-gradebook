@@ -61,7 +61,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentServiceHttp
  * @generated
  */
@@ -134,17 +134,13 @@ public class AssignmentServiceSoap {
 	}
 
 	public static com.liferay.training.gradebook.model.AssignmentSoap[]
-			getAssignmentByGroupId(
-				long groupId, String keywords, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.training.gradebook.model.Assignment>
-						orderByComparator)
+			getAssignmentsByGroupId(long groupId)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.training.gradebook.model.Assignment>
-				returnValue = AssignmentServiceUtil.getAssignmentByGroupId(
-					groupId, keywords, start, end, orderByComparator);
+				returnValue = AssignmentServiceUtil.getAssignmentsByGroupId(
+					groupId);
 
 			return com.liferay.training.gradebook.model.AssignmentSoap.
 				toSoapModels(returnValue);

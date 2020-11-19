@@ -18,7 +18,7 @@ import org.osgi.annotation.versioning.ProviderType;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
 /**
- * @author Kedar
+ * @author Brian Wing Shun Chan
  */
 @ProviderType
 public class NoSuchAssignmentException extends NoSuchModelException {

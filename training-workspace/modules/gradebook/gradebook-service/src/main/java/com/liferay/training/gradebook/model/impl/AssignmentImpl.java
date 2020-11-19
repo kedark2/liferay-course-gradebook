@@ -23,7 +23,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.training.gradebook.model.Assignment<code> interface.
  * </p>
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  */
 @ProviderType
 public class AssignmentImpl extends AssignmentBaseImpl {

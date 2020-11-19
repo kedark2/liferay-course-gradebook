@@ -47,7 +47,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentLocalServiceUtil
  * @generated
  */
@@ -242,10 +242,6 @@ public interface AssignmentLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DynamicQuery getKeywordSearchDynamicQuery(
-		long groupId, String keywords);
 
 	/**
 	 * Returns the OSGi service identifier.

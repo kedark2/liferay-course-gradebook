@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
  <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -20,6 +20,9 @@
 
  <%@ page import="com.liferay.training.gradebook.model.Assignment"%>
  <%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%>
+ 
+  <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
+ 
 
  <liferay-frontend:defineObjects />
 

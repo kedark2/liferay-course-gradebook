@@ -38,7 +38,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * service are expected to have security checks based on the propagated JAAS
  * credentials because this service can be accessed remotely.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentServiceUtil
  * @generated
  */
@@ -69,9 +69,7 @@ public interface AssignmentService extends BaseService {
 	public Assignment getAssignment(long assignmentId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByGroupId(
-		long groupId, String keywords, int start, int end,
-		OrderByComparator<Assignment> orderByComparator);
+	public List<Assignment> getAssignmentsByGroupId(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Assignment> getAssignmentsByKeywords(

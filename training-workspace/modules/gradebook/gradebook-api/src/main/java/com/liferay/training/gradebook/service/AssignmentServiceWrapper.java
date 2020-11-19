@@ -21,7 +21,7 @@ import org.osgi.annotation.versioning.ProviderType;
 /**
  * Provides a wrapper for {@link AssignmentService}.
  *
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @see AssignmentService
  * @generated
  */
@@ -63,14 +63,9 @@ public class AssignmentServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.training.gradebook.model.Assignment>
-		getAssignmentByGroupId(
-			long groupId, String keywords, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.training.gradebook.model.Assignment>
-					orderByComparator) {
+		getAssignmentsByGroupId(long groupId) {
 
-		return _assignmentService.getAssignmentByGroupId(
-			groupId, keywords, start, end, orderByComparator);
+		return _assignmentService.getAssignmentsByGroupId(groupId);
 	}
 
 	@Override

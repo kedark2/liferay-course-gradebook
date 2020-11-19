@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Kedar
+ * @author Brian Wing Shun Chan
  * @generated
  */
 @Component(immediate = true, service = {})
