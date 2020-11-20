@@ -14,6 +14,8 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
+		"com.liferay.portlet.css-class-wrapper=gradebook-portlet",
+		"com.liferay.portlet.header-portlet-css=/css/main.scss",
 		"com.liferay.portlet.display-category=category.training",
 		"com.liferay.portlet.instanceable=false",
 		"com.portlet.display-name=Gradebook",
