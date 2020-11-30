@@ -1,29 +1,30 @@
- package com.liferay.training.gradebook.web.portlet.action;
+package com.liferay.training.gradebook.web.portlet.action;
 
  import com.liferay.portal.kernel.dao.search.SearchContainer;
- import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
- import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
- import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
- import com.liferay.portal.kernel.theme.ThemeDisplay;
- import com.liferay.portal.kernel.util.OrderByComparator;
- import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
- import com.liferay.portal.kernel.util.ParamUtil;
- import com.liferay.portal.kernel.util.Portal;
- import com.liferay.portal.kernel.util.WebKeys;
- import com.liferay.training.gradebook.model.Assignment;
- import com.liferay.training.gradebook.service.AssignmentService;
- import com.liferay.training.gradebook.web.constants.GradebookPortletKeys;
- import com.liferay.training.gradebook.web.constants.MVCCommandNames;
- import com.liferay.training.gradebook.web.display.context.AssignmentsManagementToolbarDisplayContext;
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.training.gradebook.model.Assignment;
+import com.liferay.training.gradebook.service.AssignmentService;
+import com.liferay.training.gradebook.web.constants.GradebookPortletKeys;
+import com.liferay.training.gradebook.web.constants.MVCCommandNames;
+import com.liferay.training.gradebook.web.display.context.AssignmentsManagementToolbarDisplayContext;
+import com.liferay.training.gradebook.web.internal.security.permission.resource.AssignmentPermission;
 
- import java.util.List;
+import java.util.List;
 
- import javax.portlet.PortletException;
- import javax.portlet.RenderRequest;
- import javax.portlet.RenderResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
- import org.osgi.service.component.annotations.Component;
- import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
  /**
   * MVC command for showing the assignments list.
@@ -54,6 +55,11 @@
 
          addManagementToolbarAttributes(renderRequest, renderResponse);
 
+         // Add permission checker.
+
+         renderRequest.setAttribute(
+             "assignmentPermission", _assignmentPermission);        
+
          return "/view.jsp";
      }
 
@@ -83,7 +89,7 @@
          // Get sorting options.
          // Notice that this doesn't really sort on title because the field is
          // stored in XML. In real world this search would be integrated to the
-         // search engine  to get localized sort options.
+         // search engine  to get localized sort options. 
 
          String orderByCol =
              ParamUtil.getString(renderRequest, "orderByCol", "title");
@@ -103,14 +109,14 @@
 
          // Call the service to get the list of assignments.
 
-         List<Assignment> assignments =
+         List<Assignment> assigments =
              _assignmentService.getAssignmentsByKeywords(
                  themeDisplay.getScopeGroupId(), keywords, start, end,
                  comparator);
 
          // Set request attributes.
 
-         renderRequest.setAttribute("assignments", assignments);
+         renderRequest.setAttribute("assignments", assigments);
          renderRequest.setAttribute(
              "assignmentCount", _assignmentService.getAssignmentsCountByKeywords(
                  themeDisplay.getScopeGroupId(), keywords));
@@ -142,6 +148,9 @@
              assignmentsManagementToolbarDisplayContext);
 
      }
+
+     @Reference
+     protected AssignmentPermission _assignmentPermission;
 
      @Reference
      protected AssignmentService _assignmentService;
