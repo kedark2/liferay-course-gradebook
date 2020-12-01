@@ -2,7 +2,7 @@ dependencies {
 	// Clay taglib.
 	compileOnly group: 'com.liferay', name: 'com.liferay.frontend.taglib.clay'
 	
-	// Needed fpr the Assignments Management Toolbar.
+	// Needed for the Assignments Management Toolbar.
 	
 	compileOnly group: 'com.liferay', name: 'com.liferay.petra.function'
 	
@@ -17,4 +17,7 @@ dependencies {
  	
  	// Gradebook service.
  	compileOnly project(":modules:gradebook:gradebook-api")
+ 	
+ 	compileOnly group: "com.liferay", name: "com.liferay.asset.api"
+ compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api"
 }
