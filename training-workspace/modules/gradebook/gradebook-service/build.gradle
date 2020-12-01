@@ -9,6 +9,9 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:gradebook:gradebook-api")
+	
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi"
+ 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api"
 
 
 }
